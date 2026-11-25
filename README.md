@@ -5,29 +5,37 @@
 ## 構成
 
 ```
-public/            公開されるファイル（Cloudflare Pages の出力ディレクトリ）
+public/            公開されるファイル（静的アセット）
   index.html       ページ本体（CSS・JSも同梱）
   assets/          画像（KVパーツ、写真、グッズ、フッター背景、マスコットSVG）
-functions/
-  _middleware.js   サイト全体にかける Basic 認証（Cloudflare Pages Functions）
+src/worker.js      サイト全体にかける Basic 認証（Cloudflare Workers）
+wrangler.jsonc     Workers の設定（public/ を配信し、先に worker.js を通す）
 ```
 
-## Cloudflare Pages の設定
+## Cloudflare Workers の設定
+
+GitHub 連携で作成する場合の入力値：
 
 | 項目 | 値 |
 | --- | --- |
-| Framework preset | None |
-| Build command | （空欄） |
-| Build output directory | `public` |
+| ビルド コマンド | （空欄） |
+| デプロイ コマンド | `npx wrangler deploy` |
 
 ### Basic 認証
 
-Settings → Variables and Secrets に次の2つを **Secret** として登録し、再デプロイします（Production / Preview の両方）。
+Worker の Settings → Variables and Secrets に次の2つを **Secret** として登録します。
 
 - `BASIC_USER` … ユーザー名
 - `BASIC_PASS` … パスワード
 
 どちらかが未設定のあいだは 503 を返し、ページは誰にも表示されません。
+
+### ローカルで確認
+
+```bash
+printf 'BASIC_USER=test\nBASIC_PASS=test\n' > .dev.vars   # .gitignore 済み
+npx wrangler dev
+```
 
 ## 差し替えが残っているもの
 

@@ -1,0 +1,13 @@
+{
+  "name": "puppypet",
+  "main": "src/worker.js",
+  "compatibility_date": "2026-11-01",
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS",
+    // 静的ファイルより先に Worker（Basic 認証）を必ず通す
+    "run_worker_first": true
+  },
+  // ダッシュボードで登録した変数・シークレットをデプロイで消さない
+  "keep_vars": true
+}
