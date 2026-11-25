@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>パピーペット復活ライブ「さるの恩返し」2027.5.15 SAT @アメリカ村DROP</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="解散から20年。パピーペット presents 復活ライブ「さるの恩返し」2027年5月15日(土) アメリカ村DROP。OPEN 15:30 / START 16:00。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:ital,wght@1,700;1,800;1,900&family=Dela+Gothic+One&family=Knewave&family=Noto+Sans+JP:wght@500;700;900&family=Permanent+Marker&family=RocknRoll+One&display=swap" rel="stylesheet">
+<style>
+/* =========================================================
+   変数・リセット
+   ========================================================= */
+:root{
+  --red:#e01219;
+  --red-dark:#8f0a10;
+  --black:#111;
+  --paper:#f3ead6;
+  --yellow:#ffe500;
+  /* フォント設計：本文・和文見出し=Noto Sans JP／ロゴ系=Dela Gothic One／英字の筆文字=Knewave／詰まった英字=Anton・Barlow Condensed Italic／手書き=RocknRoll One・Permanent Marker */
+  --f-body:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+  --f-heavy:"Dela Gothic One","Noto Sans JP",sans-serif;
+  --f-title:"Tetsubin Gothic","Dela Gothic One",sans-serif;   /* 鉄瓶ゴシック（下の @font-face を有効化すると適用） */
+  --f-brush:"Knewave","Permanent Marker",cursive;          /* 英字の筆文字見出し */
+  --f-cond:"Anton","Barlow Condensed",sans-serif;          /* EPISODE 01 などの詰まった英字 */
+  --f-date:"Barlow Condensed","Impact",sans-serif;
+  --f-hand:"Tetsubin Gothic","RocknRoll One","Noto Sans JP",sans-serif;
+  --f-marker:"Permanent Marker","Knewave",cursive;
+}
+/* 鉄瓶ゴシックはGoogle Fontsに無いため、入手したフォントファイルを置いて下のコメントを外す
+@font-face{font-family:"Tetsubin Gothic";src:url("fonts/TetsubinGothic.woff2") format("woff2");font-display:swap}
+*/
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:#1a1a1a;color:var(--black);font-family:var(--f-body);font-weight:700;line-height:1.6}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,p,ul,dl,dd{margin:0;padding:0}
+ul{list-style:none}
+
+/* LP本体：最大724pxの縦長1カラム。内部は cqw で比例スケール */
+.lp{max-width:724px;margin:0 auto;overflow:hidden;container-type:inline-size;background:var(--red);box-shadow:0 0 60px rgba(0,0,0,.6)}
+
+/* =========================================================
+   質感パーツ
+   ========================================================= */
+/* 赤いグランジ背景（ハーフトーン＋ムラ） */
+.bg-red{
+  background:
+    radial-gradient(circle at 12% 18%,rgba(0,0,0,.35) 0 1.2px,transparent 1.6px) 0 0/7px 7px,
+    radial-gradient(ellipse at 0% 0%,rgba(0,0,0,.45),transparent 45%),
+    radial-gradient(ellipse at 100% 100%,rgba(0,0,0,.4),transparent 50%),
+    radial-gradient(ellipse at 80% 10%,rgba(255,80,60,.5),transparent 40%),
+    var(--red);
+  color:#fff;
+}
+/* 紙の背景 */
+.bg-paper{
+  background:
+    radial-gradient(circle at 20% 30%,rgba(120,90,40,.10),transparent 30%),
+    radial-gradient(circle at 85% 70%,rgba(120,90,40,.12),transparent 35%),
+    radial-gradient(rgba(90,60,20,.08) 1px,transparent 1.4px) 0 0/5px 5px,
+    var(--paper);
+}
+.bg-black{
+  background:
+    radial-gradient(rgba(255,255,255,.05) 1px,transparent 1.4px) 0 0/4px 4px,
+    radial-gradient(ellipse at 70% 40%,#2a2a2a,transparent 60%),
+    #0d0d0d;
+  color:#fff;
+}
+/* 文字のかすれ（縁を少し荒らす） */
+.ink{filter:url(#ink)}
+/* ちぎった紙：背景だけSVGフィルターで縁を荒らす（文字はくっきりのまま） */
+.torn{position:relative;isolation:isolate}
+.torn::before{
+  content:"";position:absolute;inset:0;z-index:-1;
+  background:var(--torn-bg,var(--paper));
+  filter:url(#rough);
+}
+.torn--yellow{--torn-bg:var(--yellow)}
+.torn--black{--torn-bg:var(--black)}
+.torn--red{--torn-bg:var(--red)}
+.torn--white{--torn-bg:#fbf7ee}
+
+/* セクション：上下をちぎり紙風に重ねる */
+.sec{position:relative;isolation:isolate;padding:clamp(28px,6cqw,44px) clamp(16px,5cqw,38px)}
+.sec::before{
+  content:"";position:absolute;inset:-7px -24px;z-index:-1;
+  background:inherit;filter:url(#rough-lg);
+}
+.sec + .sec{margin-top:-2px}
+
+/* =========================================================
+   HERO（キービジュアル）
+   デザイン原寸 724×572px を cqw で比例配置（1cqw = LP幅の1%）
+   ========================================================= */
+.hero{padding:0}
+.hero.bg-red{background:
+  radial-gradient(circle,rgba(0,0,0,.42) 0 1.1px,transparent 1.5px) 0 0/6px 6px,
+  radial-gradient(ellipse at 0% 100%,rgba(0,0,0,.3),transparent 36%),
+  radial-gradient(ellipse at 100% 100%,rgba(0,0,0,.3),transparent 30%),
+  radial-gradient(ellipse at 34% 34%,#ff2a22,transparent 66%),
+  var(--red)}
+.kv{position:relative;height:79cqw;overflow:hidden}
+.kv > *{position:absolute;margin:0}
+.kv__p{display:block;height:auto}
+.kv__p img{display:block;width:100%;height:auto}
+.kv__grunge{inset:0;width:100%;height:100%;z-index:0;pointer-events:none;mix-blend-mode:multiply}
+/* マスコット背後の集中線 */
+.kv__rays{left:-28cqw;top:4cqw;width:74cqw;height:74cqw;z-index:1;border-radius:50%;
+  background:repeating-conic-gradient(from 3deg,rgba(0,0,0,.6) 0 .7deg,transparent .7deg 8deg,rgba(0,0,0,.45) 8deg 8.4deg,transparent 8.400deg 17deg);
+  -webkit-mask-image:radial-gradient(circle,transparent 0 26%,#000 36%,transparent 62%);mask-image:radial-gradient(circle,transparent 0 26%,#000 36%,transparent 62%)}
+
+.kv__since{left:2.4cqw;top:2.8cqw;width:37cqw;z-index:4}
+.kv__band{left:3.4cqw;top:7cqw;width:46cqw;z-index:8}
+.kv__revival{left:50.6cqw;top:.8cqw;width:44.5cqw;z-index:5}
+.kv__support{left:57.6cqw;top:12.2cqw;width:32cqw;z-index:6}
+.kv__vocal{left:64.4cqw;top:13.3cqw;width:35.6cqw;z-index:2;filter:contrast(1.08)}
+.kv__title{left:28.6cqw;top:26.4cqw;width:46.5cqw;z-index:5;transform:rotate(-6deg)}
+.kv__monkey{left:.8cqw;top:21.6cqw;width:28.6cqw;z-index:6;filter:drop-shadow(.35cqw .45cqw 0 rgba(0,0,0,.45))}
+
+/* 日程帯：全幅の白いちぎり紙の上に、左＝日付・会場／右＝開場・料金 */
+.kv__strip{left:-4cqw;right:-4cqw;top:49.4cqw;height:15.4cqw;z-index:3;background:#faf0df;transform:rotate(-2.6deg);filter:url(#rough-lg)}
+.kv__date{left:9cqw;top:49.8cqw;width:52cqw;z-index:7;transform:rotate(-3deg)}
+.kv__venue{left:22.6cqw;top:59cqw;width:34cqw;z-index:7;transform:rotate(-3deg)}
+.kv__detail{left:61.4cqw;top:50.8cqw;width:33.4cqw;z-index:7;transform:rotate(-2.5deg)}
+
+/* チケットボタン（画像リンク）＋左右の集中線 */
+.btn-ticket{left:21.5cqw;top:64.6cqw;width:57cqw;z-index:8;transform:rotate(-2.5deg);transition:scale .15s;filter:drop-shadow(.3cqw .4cqw 0 #0b0b0b)}
+.btn-ticket:hover{scale:1.03}
+.btn-ticket::before,.btn-ticket::after{content:"";position:absolute;top:50%;width:6.4cqw;height:8cqw;translate:0 -50%;
+  background:
+    linear-gradient(#111,#111) 0 10%/100% .5cqw no-repeat,
+    linear-gradient(#111,#111) 0 50%/65% .5cqw no-repeat,
+    linear-gradient(#111,#111) 0 90%/100% .5cqw no-repeat}
+.btn-ticket::before{right:calc(100% + 2.6cqw);transform:scaleX(-1) skewY(-16deg)}
+.btn-ticket::after{left:calc(100% + 2.6cqw);transform:skewY(-16deg)}
+
+/* =========================================================
+   ABOUT
+   ========================================================= */
+.about-sec{padding:0}
+.about{position:relative;isolation:isolate;display:grid;grid-template-columns:minmax(0,1.42fr) minmax(0,1fr);gap:clamp(10px,2cqw,18px);align-items:center;
+  padding:clamp(26px,5.4cqw,42px) clamp(16px,4.6cqw,36px) clamp(26px,5.6cqw,44px);color:#fff}
+.about::before{content:"";position:absolute;inset:-7px -24px;z-index:-1;filter:url(#rough-lg);
+  background:radial-gradient(rgba(255,255,255,.05) 1px,transparent 1.4px) 0 0/4px 4px,radial-gradient(ellipse at 70% 40%,#262626,transparent 60%),#0d0d0d}
+.about__body{position:relative;order:-1}
+.about__label{display:inline-block;padding:.1em .7em .05em .6em;margin:0 0 .35em .2em;transform:rotate(-5deg);
+  font:400 clamp(14px,2.9cqw,21px)/1.3 var(--f-brush);letter-spacing:.03em;color:#fff}
+.about__title{font:900 clamp(19px,4.6cqw,34px)/1.26 var(--f-body);letter-spacing:0;transform:rotate(-4deg);transform-origin:left bottom;margin:0 0 .45em;white-space:nowrap}
+.about__title span{display:block}
+.about__text{font:500 clamp(11.5px,2.1cqw,15.5px)/1.7 var(--f-body);letter-spacing:.05em;transform:rotate(-4deg);transform-origin:left top}
+.about__scribble{position:absolute;right:-1cqw;bottom:-1.5cqw;width:clamp(44px,10cqw,74px);color:var(--red)}
+.polaroid{position:relative;margin:0;padding:4.5% 4.5% 11%;background:#e9e0cc;transform:rotate(-4deg);box-shadow:0 8px 24px rgba(0,0,0,.65)}
+.polaroid::after{content:"";position:absolute;inset:0;border:1px solid rgba(0,0,0,.2);pointer-events:none}
+.polaroid img{width:100%;aspect-ratio:16/10;object-fit:cover;filter:grayscale(1) contrast(1.15)}
+.polaroid figcaption{position:absolute;right:3%;bottom:-2%;padding:0 .6em;transform:rotate(-4deg);
+  font:400 clamp(17px,4.4cqw,33px)/1.45 var(--f-marker);letter-spacing:.02em;color:var(--black)}
+.polaroid i{position:absolute;width:22%;height:8%;background:rgba(236,226,202,.88);box-shadow:0 1px 3px rgba(0,0,0,.35)}
+.polaroid i:nth-of-type(1){left:-7%;top:-2%;transform:rotate(-38deg)}
+.polaroid i:nth-of-type(2){right:-7%;top:-2%;transform:rotate(38deg)}
+.polaroid i:nth-of-type(3){display:none}
+
+/* =========================================================
+   パピ録チャンネル
+   ========================================================= */
+.sec-head{display:flex;flex-wrap:wrap;align-items:center;gap:8px 20px;margin-bottom:clamp(14px,3cqw,22px)}
+.papiroku__title{font:900 clamp(24px,5.8cqw,46px)/1.05 var(--f-body);letter-spacing:-.04em;transform:rotate(-5deg) skewX(-10deg);white-space:nowrap}
+.papiroku__title b{font-size:1.28em;font-weight:900;margin-right:.03em}
+.papiroku__title svg{display:inline-block;width:.85em;height:.6em;vertical-align:.1em;margin-left:.1em}
+.papiroku__title small{display:block;font:italic 800 .34em/1.3 var(--f-date);letter-spacing:.07em;text-align:right;margin-right:1.6em;transform:skewX(10deg)}
+.sec-head__lead{flex:1 1 220px;font-size:clamp(11.5px,2cqw,16px);line-height:1.6;letter-spacing:.05em;white-space:nowrap}
+.episodes{display:grid;gap:clamp(12px,2.4cqw,18px)}
+.episode{display:grid;grid-template-columns:44% 1fr;border:2px solid var(--black);background:#fbf7ee}
+.episode__thumb{position:relative;display:block;background:#222;overflow:hidden}
+.episode__thumb img{width:100%;height:100%;aspect-ratio:2/1;object-fit:cover;filter:grayscale(1);transition:transform .3s}
+.episode__thumb:hover img{transform:scale(1.04)}
+.episode__thumb::after{ /* 再生ボタン */
+  content:"";position:absolute;left:50%;top:50%;width:clamp(36px,6.2cqw,46px);aspect-ratio:1;translate:-50% -50%;border-radius:50%;
+  background:var(--red) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M9 6.5v11l9-5.500z' fill='%23fff'/%3E%3C/svg%3E") center/70% no-repeat;
+  box-shadow:0 2px 8px rgba(0,0,0,.5);
+}
+.episode__body{position:relative;padding:clamp(10px,2cqw,16px) clamp(12px,2.6cqw,20px)}
+.episode__no{position:absolute;right:clamp(10px,2cqw,16px);top:clamp(10px,2.6cqw,20px);font:400 clamp(15px,3cqw,23px)/1 var(--f-cond);letter-spacing:.01em}
+.episode__name{display:inline-block;padding:.15em 1.1em .2em;margin-bottom:.4em;color:#fff;transform:rotate(-4deg);text-align:center}
+.episode__name small{display:block;font:700 clamp(9px,1.6cqw,11.5px)/1.3 var(--f-body)}
+.episode__name strong{display:block;font:900 clamp(18px,3.9cqw,30px)/1.15 var(--f-body);letter-spacing:.06em}
+.episode__text{font-size:clamp(11px,1.82cqw,14.5px);line-height:1.6;letter-spacing:.02em}
+.episode__status{display:inline-block;margin-top:.7em;padding:.1em .9em;border:2px solid var(--black);font-size:clamp(11px,2cqw,14.5px);font-weight:900;background:#fff}
+
+/* =========================================================
+   GUEST ARTISTS
+   ========================================================= */
+.guest__title{
+  position:relative;font:400 clamp(30px,7.4cqw,62px)/1.05 var(--f-brush);letter-spacing:.01em;color:#fff;
+  transform:rotate(-5deg);text-shadow:3px 3px 0 rgba(0,0,0,.5);white-space:nowrap;
+}
+.guest__title::after{content:"";position:absolute;left:8%;right:-4%;bottom:-.18em;height:.14em;background:var(--yellow);transform:skewX(-30deg) rotate(-1deg)}
+.guest__sub{margin-left:auto;padding:.15em .9em;font:900 clamp(15px,3.3cqw,24px)/1.5 var(--f-body);color:var(--black);transform:rotate(-3deg)}
+.guests{display:grid;gap:clamp(12px,2.6cqw,20px)}
+.guest{position:relative;display:grid;grid-template-columns:36% 1fr;color:var(--black);padding:3px}
+.guest img{width:100%;height:100%;aspect-ratio:12/5;object-fit:cover;filter:grayscale(1)}
+.guest__body{padding:clamp(6px,1.2cqw,10px) clamp(10px,2.4cqw,18px)}
+.guest__name{font:900 clamp(18px,3.9cqw,28px)/1.3 var(--f-body);padding-right:5.2em}
+.guest__text{font-size:clamp(11px,1.9cqw,15px);line-height:1.5;letter-spacing:.03em}
+.guest__no{
+  position:absolute;right:clamp(4px,1cqw,8px);top:clamp(-8px,-1cqw,-4px);padding:.1em .7em;
+  font:400 clamp(13px,2.8cqw,23px)/1.5 var(--f-brush);transform:rotate(-5deg);
+}
+
+/* =========================================================
+   OFFICIAL GOODS
+   ========================================================= */
+.goods__head{display:grid;grid-template-columns:auto auto 1fr;gap:clamp(10px,3cqw,22px);align-items:center;margin-bottom:clamp(12px,2.5cqw,18px)}
+.goods__title{padding:.15em .5em;font:400 clamp(28px,6.4cqw,54px)/1 var(--f-brush);letter-spacing:.01em;transform:rotate(-7deg)}
+.goods__title span{display:block}
+.goods__title span + span{margin-left:.6em}
+.goods__catch{position:relative;font:400 clamp(16px,3.6cqw,30px)/1.35 var(--f-hand);transform:rotate(-8deg) skewX(-10deg);white-space:nowrap}
+.goods__catch svg{position:absolute;left:55%;top:95%;width:3.2em;color:var(--red)}
+.goods__text{font-size:clamp(11.5px,1.9cqw,13.5px);line-height:1.6}
+.goods__list{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(8px,2cqw,16px);align-items:end;position:relative}
+.goods__item{text-align:center;font-size:clamp(11px,1.95cqw,14px)}
+.goods__item img{margin:0 auto 6px;max-height:clamp(90px,22cqw,160px);width:auto;mix-blend-mode:multiply}
+.goods__more{text-align:right;font:400 clamp(13px,2.6cqw,22px)/1 var(--f-brush);transform:rotate(-4deg);margin-top:26px}
+.btn-goods{
+  display:flex;align-items:center;justify-content:center;gap:.8em;width:min(100%,540px);margin:clamp(10px,2cqw,16px) auto 0;padding:.55em 1em;
+  font:900 clamp(15px,3.2cqw,23px)/1.4 var(--f-body);color:#fff;transition:transform .15s;
+}
+.btn-goods:hover{transform:translateY(-2px)}
+.btn-goods svg{width:1.5em;height:1.5em;flex:none}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+.closing{position:relative;z-index:1;aspect-ratio:3/1;display:grid;place-items:center;padding:6.500cqw 4cqw 5cqw;color:#fff;
+  background:#d9161c url("assets/footer-bg.jpg") center top/cover no-repeat}
+.closing__lead{position:relative;text-align:center;transform:rotate(-4deg)}
+.closing__date{position:relative;display:inline-block;font:400 9.4cqw/1.05 var(--f-brush);letter-spacing:.05em;
+  text-shadow:.4cqw .45cqw 0 #0b0b0b,0 0 1.2cqw rgba(0,0,0,.45)}
+/* 日付の左右の集中線 */
+.closing__date::before,.closing__date::after{content:"";position:absolute;top:22%;width:4.6cqw;height:5.4cqw;
+  background:
+    linear-gradient(#fff,#fff) 0 6%/100% .42cqw no-repeat,
+    linear-gradient(#fff,#fff) 0 50%/70% .42cqw no-repeat,
+    linear-gradient(#fff,#fff) 0 94%/100% .42cqw no-repeat}
+.closing__date::before{right:calc(100% + 1.6cqw);transform:scaleX(-1) skewY(-20deg)}
+.closing__date::after{left:calc(100% + 1.6cqw);transform:skewY(-20deg)}
+.closing__msg{font:900 4.5cqw/1.3 var(--f-body);letter-spacing:.03em;transform:skewX(-10deg);white-space:nowrap;
+  text-shadow:.3cqw .35cqw 0 #0b0b0b,0 0 1cqw rgba(0,0,0,.45)}
+.closing__bolt{display:block;width:62cqw;margin:.2cqw auto 0;translate:2cqw 0}
+.lp{padding-bottom:0}
+footer.closing{margin-bottom:0}
+body::after{content:"";display:block;height:calc(76px + env(safe-area-inset-bottom))}
+.closing__copy{position:absolute;left:0;right:0;bottom:1.2cqw;text-align:center;font:500 max(9px,1.3cqw)/1 var(--f-body);color:#fff;opacity:.75}
+
+/* =========================================================
+   フローティングCTA（KVが画面外に出たら表示）
+   ========================================================= */
+.float-cta{position:fixed;left:50%;bottom:0;z-index:100;width:min(100%,724px);translate:-50% 110%;
+  display:flex;justify-content:center;padding:10px 16px calc(10px + env(safe-area-inset-bottom));
+  background:linear-gradient(to top,rgba(0,0,0,.88) 55%,rgba(0,0,0,0));pointer-events:none;
+  transition:translate .3s ease,visibility .3s;visibility:hidden}
+.float-cta.is-show{translate:-50% 0;visibility:visible}
+.float-cta a{display:block;width:min(86%,400px);pointer-events:auto;transform:rotate(-1.5deg);transition:scale .15s;
+  filter:drop-shadow(0 4px 10px rgba(0,0,0,.6))}
+.float-cta a:hover{scale:1.03}
+.float-cta img{width:100%}
+@media (prefers-reduced-motion:reduce){.float-cta{transition:none}}
+body{padding-bottom:0}
+
+/* =========================================================
+   スクロール表示アニメーション
+   スタンプを叩きつける／横から滑り込む／貼り付ける、の3系統。
+   transform とは独立した scale / rotate / translate を使うので、各要素の傾きはそのまま保たれる。
+   ========================================================= */
+.js:not(.rv-ready) .kv > *{opacity:0}
+.js [data-reveal]:not(.is-in){opacity:0}
+[data-reveal].is-in{animation:.62s cubic-bezier(.2,.85,.3,1.15) var(--d,0s) backwards}
+[data-reveal="stamp"].is-in{animation-name:rv-stamp;animation-duration:.5s}
+[data-reveal="left"].is-in{animation-name:rv-left}
+[data-reveal="right"].is-in{animation-name:rv-right}
+[data-reveal="up"].is-in{animation-name:rv-up}
+[data-reveal="pop"].is-in{animation-name:rv-pop;animation-duration:.5s}
+[data-reveal="drop"].is-in{animation-name:rv-drop;animation-duration:.7s}
+[data-reveal="jump"].is-in{animation-name:rv-jump;animation-duration:.8s}
+[data-reveal="wipe"].is-in{animation-name:rv-wipe;animation-timing-function:cubic-bezier(.7,0,.2,1)}
+[data-reveal="fade"].is-in{animation-name:rv-fade;animation-duration:.9s}
+@keyframes rv-stamp{0%{opacity:0;scale:1.9;rotate:-7deg}55%{opacity:1;scale:.93;rotate:1deg}78%{scale:1.04}}
+@keyframes rv-left{0%{opacity:0;translate:-18% 0;rotate:-3deg}65%{opacity:1;translate:2% 0}}
+@keyframes rv-right{0%{opacity:0;translate:18% 0;rotate:3deg}65%{opacity:1;translate:-2% 0}}
+@keyframes rv-up{0%{opacity:0;translate:0 28px}}
+@keyframes rv-pop{0%{opacity:0;scale:.3;rotate:-14deg}65%{opacity:1;scale:1.12;rotate:3deg}}
+@keyframes rv-drop{0%{opacity:0;scale:1.35;rotate:12deg;translate:0 -36px}60%{opacity:1;scale:.97;rotate:-2deg;translate:0 0}}
+@keyframes rv-jump{0%{opacity:0;translate:-45% 30%;rotate:-28deg}55%{opacity:1;translate:4% -7%;rotate:7deg}78%{translate:-1% 2%;rotate:-2deg}}
+@keyframes rv-wipe{0%{clip-path:inset(-20% 100% -20% 0)}100%{clip-path:inset(-20% -5% -20% 0)}}
+@keyframes rv-fade{0%{opacity:0}}
+@media (prefers-reduced-motion:reduce){
+  .js [data-reveal]:not(.is-in),.js:not(.rv-ready) .kv > *{opacity:1}
+  [data-reveal].is-in{animation:none}
+}
+
+/* =========================================================
+   スマホ調整
+   ========================================================= */
+@container (max-width:520px){
+  .sec-head__lead{white-space:normal}
+  .about{grid-template-columns:minmax(0,1fr)}
+  .about__title{white-space:normal}
+  .polaroid{width:80%;margin:10px auto 0}
+  .episode{grid-template-columns:1fr}
+  .guest{grid-template-columns:1fr}
+  .guest__name{padding-right:0;margin-top:.3em}
+  .goods__head{grid-template-columns:1fr 1fr}
+  .goods__text{grid-column:1/-1}
+  .goods__list{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+<script>
+/* アニメーション用：JS有効時だけ初期非表示にする（3秒たっても準備できなければ強制表示） */
+document.documentElement.classList.add('js');
+setTimeout(function(){document.documentElement.classList.add('rv-ready');},3000);
+</script>
+</head>
+<body>
+
+<!-- ちぎり紙・グランジ用SVGフィルター -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <filter id="rough" x="-5%" y="-20%" width="110%" height="140%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.045" numOctaves="3" seed="7" result="n"/>
+    <feDisplacementMap in="SourceGraphic" in2="n" scale="7"/>
+  </filter>
+  <filter id="ink" x="-5%" y="-10%" width="110%" height="120%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="2" seed="9" result="n"/>
+    <feDisplacementMap in="SourceGraphic" in2="n" scale="2.600"/>
+  </filter>
+  <filter id="rough-lg" x="-2%" y="-2%" width="104%" height="104%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.02 0.06" numOctaves="3" seed="3" result="n"/>
+    <feDisplacementMap in="SourceGraphic" in2="n" scale="14"/>
+  </filter>
+</svg>
+
+<main class="lp">
+
+  <!-- ================= HERO ================= -->
+  <header class="hero bg-red">
+    <div class="kv">
+      <svg class="kv__grunge" viewBox="0 0 724 572" preserveAspectRatio="none" aria-hidden="true">
+        <filter id="kv-blot" x="0" y="0" width="100%" height="100%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="4" seed="11"/>
+          <feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 9 -5.200"/>
+        </filter>
+        <filter id="kv-speck" x="0" y="0" width="100%" height="100%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.55" numOctaves="2" seed="4"/>
+          <feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 14 -9.200"/>
+        </filter>
+        <rect width="724" height="572" filter="url(#kv-blot)" opacity=".35"/>
+        <rect width="724" height="572" filter="url(#kv-speck)" opacity=".55"/>
+      </svg>
+      <i class="kv__rays"></i>
+
+      <!-- 各パーツは提供画像（文字はalt属性に記載） -->
+      <img class="kv__p kv__since" src="assets/kv-since.webp" alt="解散から20年——">
+      <img class="kv__p kv__band" src="assets/kv-logo.webp" alt="パピーペット presents">
+      <img class="kv__p kv__revival" src="assets/kv-revival.webp" alt="復活ライブ!!">
+      <img class="kv__p kv__support" src="assets/kv-supported.webp" alt="supported by 音の地図">
+      <img class="kv__vocal" src="assets/kv-vocal.png" alt="">
+      <img class="kv__p kv__monkey" src="assets/mascot.svg" alt="パピーペットのマスコット">
+      <h1 class="kv__p kv__title"><img src="assets/kv-title.webp" alt="さるの恩返し"></h1>
+
+      <i class="kv__strip"></i>
+      <img class="kv__p kv__date" src="assets/kv-date.webp" alt="2027年5月15日（土）">
+      <img class="kv__p kv__venue" src="assets/kv-venue.webp" alt="@アメリカ村 DROP">
+      <img class="kv__p kv__detail" src="assets/kv-info.webp" alt="OPEN 15:30 / START 16:00　前売 ¥3,500 / 特典付 ¥4,500（+1D別）">
+
+      <!-- TODO: チケット販売ページのURLに差し替え -->
+      <a class="kv__p btn-ticket" href="#"><img src="assets/btn-ticket.webp" alt="チケットを購入する"></a>
+    </div>
+  </header>
+
+  <!-- ================= ABOUT ================= -->
+  <section class="about-sec" id="about">
+    <div class="about">
+      <figure class="polaroid">
+        <img src="assets/about-photo.jpg" alt="パピーペットのメンバー">
+        <i></i><i></i><i></i>
+        <figcaption class="torn torn--white">PUPPYPET</figcaption>
+      </figure>
+      <div class="about__body">
+        <p class="about__label ink torn torn--red">ABOUT</p>
+        <h2 class="about__title"><span>あれから、20年。</span><span>もう一度、パピーペット。</span></h2>
+        <p class="about__text">2000年、大阪で結成。全米ツアー、<br>メジャーデビュー、そして2007年、解散。<br>それぞれの人生を歩んできた20年を経て、<br>私たちは、再びステージに帰ってきます。</p>
+        <svg class="about__scribble" viewBox="0 0 90 40" fill="none" stroke="currentColor" stroke-width="3.500" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 34 50 12 30 26 74 8 52 24 86 14"/></svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= パピ録チャンネル ================= -->
+  <section class="sec bg-paper" id="papiroku">
+    <div class="sec-head">
+      <h2 class="papiroku__title ink"><b>パピ録</b>チャンネル<svg viewBox="0 0 34 24" aria-label="YouTube"><rect width="34" height="24" rx="6" fill="#e0181e"/><path d="M13.500 6.500v11l10-5.500z" fill="#fff"/></svg><small>PAPIROKU CHANNEL</small></h2>
+      <p class="sec-head__lead">解散から20年。メンバーはどう生きてきたのか。<br>そして、なぜ今、復活するのか——。</p>
+    </div>
+
+    <div class="episodes">
+      <!-- TODO: 公開後、hrefをYouTubeのURLに、ステータス文言を「YouTubeで観る」等に差し替え -->
+      <article class="episode">
+        <a class="episode__thumb" href="#" aria-label="パピ録チャンネル サチ編"><img src="assets/episode-sachi.jpg" alt=""></a>
+        <div class="episode__body">
+          <p class="episode__no">EPISODE 01</p>
+          <h3 class="episode__name torn torn--red"><small>パピ録チャンネル</small><strong>サチ編</strong></h3>
+          <p class="episode__text">ボーカル・サチが語る、解散、そしてこの20年。<br>今だから話せる、あの頃のことと、これからのこと。</p>
+          <p class="episode__status">近日 YouTube にて公開予定</p>
+        </div>
+      </article>
+      <article class="episode">
+        <a class="episode__thumb" href="#" aria-label="パピ録チャンネル トモ編"><img src="assets/episode-tomo.jpg" alt=""></a>
+        <div class="episode__body">
+          <p class="episode__no">EPISODE 02</p>
+          <h3 class="episode__name torn torn--red"><small>パピ録チャンネル</small><strong>トモ編</strong></h3>
+          <p class="episode__text">“光速ピアニカ”トモの20年と、<br>再び音を鳴らすことへの想い。</p>
+          <p class="episode__status">近日 YouTube にて公開予定</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ================= GUEST ARTISTS ================= -->
+  <section class="sec bg-red" id="guest">
+    <div class="sec-head">
+      <h2 class="guest__title ink">GUEST ARTISTS</h2>
+      <p class="guest__sub torn torn--white">対バンアーティスト</p>
+    </div>
+
+    <div class="guests">
+      <article class="guest torn torn--white">
+        <img src="assets/guest-01.jpg" alt="THE ピロウズ Jr.">
+        <div class="guest__body">
+          <h3 class="guest__name">THE ピロウズ Jr.</h3>
+          <p class="guest__text">大阪発、3ピースのロックバンド。<br>ポップで切なく、まっすぐなメロディで世代を越えて支持を集める。パピーペットとは2000年代からの盟友。</p>
+        </div>
+        <p class="guest__no torn torn--yellow">GUEST 01</p>
+      </article>
+      <article class="guest torn torn--white">
+        <img src="assets/guest-02.jpg" alt="ミドリノホシ">
+        <div class="guest__body">
+          <h3 class="guest__name">ミドリノホシ</h3>
+          <p class="guest__text">歌とギターを軸に活動するシンガーソングライター。<br>力強く、やさしい歌声で、日常の感情を鮮やかに描く。サチとも長年の親交がある。</p>
+        </div>
+        <p class="guest__no torn torn--yellow">GUEST 02</p>
+      </article>
+      <article class="guest torn torn--white">
+        <img src="assets/guest-03.jpg" alt="モンキーリバー">
+        <div class="guest__body">
+          <h3 class="guest__name">モンキーリバー</h3>
+          <p class="guest__text">京都発のロックバンド。<br>骨太なバンドサウンドとユーモアあふれるライブで人気急上昇中。今回がパピーペットとの初共演。</p>
+        </div>
+        <p class="guest__no torn torn--yellow">GUEST 03</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ================= OFFICIAL GOODS ================= -->
+  <section class="sec bg-paper" id="goods">
+    <div class="goods__head">
+      <h2 class="goods__title ink torn torn--yellow"><span>OFFICIAL</span><span>GOODS</span></h2>
+      <p class="goods__catch ink">グッズを持って、<br>　ライブへ！
+        <svg viewBox="0 0 80 40" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M4 36C24 30 50 20 72 6M72 6l-13 1M72 6l-5 12"/></svg>
+      </p>
+      <p class="goods__text">復活ライブを記念したオリジナルグッズを SUZURI にて販売！<br>Tシャツを着て、グッズを持って、2027.5.15 を一緒に迎えよう！</p>
+    </div>
+
+    <ul class="goods__list">
+      <li class="goods__item"><img src="assets/goods-tshirt.jpg" alt="">Tシャツ</li>
+      <li class="goods__item"><img src="assets/goods-tote.jpg" alt="">トートバッグ</li>
+      <li class="goods__item"><img src="assets/goods-towel.jpg" alt="">マフラータオル</li>
+      <li class="goods__item"><img src="assets/goods-sticker.jpg" alt="">ステッカーセット</li>
+    </ul>
+    <p class="goods__more">. . . and more!</p>
+
+    <!-- TODO: SUZURIショップのURLに差し替え -->
+    <a class="btn-goods torn torn--black" href="#">
+      <svg viewBox="0 0 32 28" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" aria-hidden="true"><path d="M11 3 3 8l4 6 3-2v13h12V12l3 2 4-6-8-5a5 5 0 0 1-10 0z"/></svg>
+      SUZURI でグッズをチェックする
+      <span aria-hidden="true">›</span>
+    </a>
+  </section>
+
+  <!-- ================= CLOSING ================= -->
+  <footer class="closing">
+    <div class="closing__lead ink">
+      <p class="closing__date">2027.5.15</p>
+      <p class="closing__msg">ライブハウスで、また会おう。</p>
+      <svg class="closing__bolt" viewBox="0 0 600 46" aria-hidden="true"><path d="M2 30 250 12 214 26 598 2 300 34 338 24 60 44 104 30Z" fill="#ffe500"/></svg>
+    </div>
+    <p class="closing__copy">© PUPPYPET</p>
+  </footer>
+
+</main>
+<script>
+/* スクロール表示アニメーション：[セレクタ, 種類, 開始の遅れ(秒), 同じセレクタ内での時差(秒)] */
+(function(){
+  var root=document.documentElement;
+  var plan=[
+    // KV（読み込み時に順番に出る）
+    ['.kv__vocal','fade',.05,0],['.kv__since','left',.1,0],['.kv__band','stamp',.25,0],['.kv__revival','stamp',.45,0],
+    ['.kv__support','pop',.7,0],['.kv__monkey','jump',.75,0],['.kv__title','stamp',.95,0],['.kv__strip','wipe',1.15,0],
+    ['.kv__date','left',1.4,0],['.kv__venue','left',1.55,0],['.kv__detail','right',1.5,0],['.kv .btn-ticket','pop',1.8,0],
+    // ABOUT
+    ['.about__label','stamp',0,0],['.about__title','left',.12,0],['.about__text','up',.3,0],['.polaroid','drop',.25,0],['.about__scribble','wipe',.6,0],
+    // パピ録チャンネル
+    ['.papiroku__title','left',0,0],['#papiroku .sec-head__lead','up',.2,0],['.episode','up',.1,.18],['.episode__name','stamp',.35,.18],
+    // GUEST ARTISTS
+    ['.guest__title','left',0,0],['.guest__sub','pop',.25,0],['.guest','right',.05,0],['.guest__no','stamp',.4,0],
+    // OFFICIAL GOODS
+    ['.goods__title','stamp',0,0],['.goods__catch','pop',.25,0],['.goods__text','up',.35,0],['.goods__item','pop',.05,.1],['.goods__more','up',.5,0],['.btn-goods','up',.1,0],
+    // FOOTER
+    ['.closing__date','stamp',0,0],['.closing__msg','up',.3,0],['.closing__bolt','wipe',.5,0]
+  ];
+  var els=[];
+  plan.forEach(function(p){
+    Array.prototype.forEach.call(document.querySelectorAll(p[0]),function(el,i){
+      el.setAttribute('data-reveal',p[1]);
+      el.style.setProperty('--d',(p[2]+p[3]*i).toFixed(2)+'s');
+      els.push(el);
+    });
+  });
+  root.classList.add('rv-ready');
+  function show(el){ el.classList.add('is-in'); }
+  if(!('IntersectionObserver' in window)){ els.forEach(show); return; }
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ show(e.target); io.unobserve(e.target); } });
+  },{threshold:.12,rootMargin:'0px 0px -6% 0px'});
+  els.forEach(function(el){ io.observe(el); });
+})();
+</script>
+<!-- フローティングCTA：KVが画面から消えたら出る -->
+<!-- TODO: チケット販売ページのURLに差し替え -->
+<div class="float-cta" id="floatCta" aria-hidden="true">
+  <a href="#" tabindex="-1"><img src="assets/btn-ticket.webp" alt="チケットを購入する"></a>
+</div>
+<script>
+(function(){
+  var cta=document.getElementById('floatCta'), hero=document.querySelector('.hero');
+  if(!cta||!hero) return;
+  function set(show){
+    cta.classList.toggle('is-show',show);
+    cta.setAttribute('aria-hidden',show?'false':'true');
+    cta.querySelector('a').tabIndex=show?0:-1;
+  }
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(e){ set(!e[0].isIntersecting); }).observe(hero);
+  }else{
+    window.addEventListener('scroll',function(){ set(hero.getBoundingClientRect().bottom<0); },{passive:true});
+  }
+})();
+</script>
+
+</body>
+</html>
