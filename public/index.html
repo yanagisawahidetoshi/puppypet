@@ -118,8 +118,7 @@ ul{list-style:none}
 .kv__band{left:3.4cqw;top:7cqw;width:46cqw;z-index:8}
 .kv__revival{left:50.6cqw;top:.8cqw;width:44.5cqw;z-index:5}
 .kv__support{left:57.6cqw;top:12.2cqw;width:32cqw;z-index:6}
-.kv__vocal{left:64.4cqw;top:13.3cqw;width:35.6cqw;z-index:2;filter:contrast(1.08)}
-.kv__title{left:28.6cqw;top:26.4cqw;width:46.5cqw;z-index:5;transform:rotate(-6deg)}
+.kv__title{left:19cqw;top:25cqw;width:79cqw;z-index:5;transform:rotate(-6deg)}
 .kv__monkey{left:.8cqw;top:21.6cqw;width:28.6cqw;z-index:6;filter:drop-shadow(.35cqw .45cqw 0 rgba(0,0,0,.45))}
 
 /* 日程帯：全幅の白いちぎり紙の上に、左＝日付・会場／右＝開場・料金 */
@@ -366,9 +365,8 @@ setTimeout(function(){document.documentElement.classList.add('rv-ready');},3000)
       <img class="kv__p kv__band" src="assets/kv-logo.webp" alt="パピーペット presents">
       <img class="kv__p kv__revival" src="assets/kv-revival.webp" alt="復活ライブ!!">
       <img class="kv__p kv__support" src="assets/kv-supported.webp" alt="supported by 音の地図">
-      <img class="kv__vocal" src="assets/kv-vocal.png" alt="">
       <img class="kv__p kv__monkey" src="assets/mascot.svg" alt="パピーペットのマスコット">
-      <h1 class="kv__p kv__title"><img src="assets/kv-title.webp" alt="さるの恩返し"></h1>
+      <h1 class="kv__p kv__title"><img src="assets/kv-saruon-logo.svg" alt="さるの恩返し"></h1>
 
       <i class="kv__strip"></i>
       <img class="kv__p kv__date" src="assets/kv-date.webp" alt="2027年5月15日（土）">
@@ -505,7 +503,7 @@ setTimeout(function(){document.documentElement.classList.add('rv-ready');},3000)
   var root=document.documentElement;
   var plan=[
     // KV（読み込み時に順番に出る）
-    ['.kv__vocal','fade',.05,0],['.kv__since','left',.1,0],['.kv__band','stamp',.25,0],['.kv__revival','stamp',.45,0],
+    ['.kv__since','left',.1,0],['.kv__band','stamp',.25,0],['.kv__revival','stamp',.45,0],
     ['.kv__support','pop',.7,0],['.kv__monkey','jump',.75,0],['.kv__title','stamp',.95,0],['.kv__strip','wipe',1.15,0],
     ['.kv__date','left',1.4,0],['.kv__venue','left',1.55,0],['.kv__detail','right',1.5,0],['.kv .btn-ticket','pop',1.8,0],
     // ABOUT
